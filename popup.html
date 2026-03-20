@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TraceShield</title>
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body class="popup-body">
+
+  <div class="header">
+    <div class="header-left">
+      <svg width="26" height="26" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M14 2L4 6.5V13C4 18.8 8.4 24.3 14 26C19.6 24.3 24 18.8 24 13V6.5L14 2Z"
+              fill="var(--accent-dim)" stroke="var(--accent)" stroke-width="1.5" stroke-linejoin="round"/>
+        <path d="M10 14L13 17L18 11" stroke="var(--accent)" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <div>
+        <div class="header-title">TraceShield</div>
+        <div class="header-subtitle">Digital Footprint Monitor</div>
+      </div>
+    </div>
+    <div class="header-actions">
+      <button class="btn-theme" id="btnTheme" title="Toggle theme">🌙</button>
+      <button class="btn-export" id="btnExport">Export</button>
+      <button class="btn-clear"  id="btnClear">Clear</button>
+    </div>
+  </div>
+
+  <div class="tip-banner" id="tipBanner">
+    <span class="tip-icon">💡</span>
+    <span class="tip-text"><span class="tip-label">TIP:</span><span id="tipText">Loading tip…</span></span>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Your Digital Footprint</div>
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-value" id="statSites">0</div>
+        <div class="stat-label">Sites</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" id="statTrackers">0</div>
+        <div class="stat-label">Trackers</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" id="statData">0</div>
+        <div class="stat-label">Data Shared</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" id="statPerms">0</div>
+        <div class="stat-label">Permissions</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Data Shared</div>
+    <div class="tag-cloud" id="tagCloud">
+      <span class="empty-state">No data detected yet — start browsing.</span>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Website Activity</div>
+    <div class="site-list" id="siteList">
+      <span class="empty-state">No sites recorded yet.</span>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

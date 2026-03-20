@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TraceShield – Site Details</title>
+  <link rel="stylesheet" href="popup.css" />
+  <style>
+    body { min-width: 380px; }
+    .details-body { padding-bottom: 32px; }
+  </style>
+</head>
+<body class="popup-body">
+
+  <div class="details-header">
+    <button class="btn-back" id="btnBack">← Back</button>
+    <span class="details-domain" id="detailsDomain">Loading…</span>
+    <span class="score-badge" id="detailsScore">—</span>
+  </div>
+
+  <div class="details-body">
+
+    <div class="section">
+      <div class="section-title">Visit Summary</div>
+      <div class="detail-grid" id="visitSummary">
+        <div class="detail-item">
+          <div class="detail-label">First Seen</div>
+          <div class="detail-value" id="firstSeen">—</div>
+        </div>
+        <div class="detail-item">
+          <div class="detail-label">Last Visit</div>
+          <div class="detail-value" id="lastVisit">—</div>
+        </div>
+        <div class="detail-item">
+          <div class="detail-label">Total Visits</div>
+          <div class="detail-value" id="totalVisits">—</div>
+        </div>
+        <div class="detail-item" style="grid-column: span 1;">
+          <div class="detail-label">Last URL</div>
+          <div class="detail-value" id="lastUrl" style="font-size:10px;">—</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section" id="cookieSection" style="display:none;">
+      <div class="section-title">Cookie Snapshot</div>
+      <div class="cookie-grid">
+        <div class="cookie-cell">
+          <div class="cookie-num" id="cookieTotal">0</div>
+          <div class="cookie-lbl">Total</div>
+        </div>
+        <div class="cookie-cell">
+          <div class="cookie-num" id="cookieSession">0</div>
+          <div class="cookie-lbl">Session</div>
+        </div>
+        <div class="cookie-cell">
+          <div class="cookie-num" id="cookiePersist">0</div>
+          <div class="cookie-lbl">Persistent</div>
+        </div>
+        <div class="cookie-cell">
+          <div class="cookie-num" id="cookieTracking" style="color: var(--poor-fg);">0</div>
+          <div class="cookie-lbl">Tracking</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Privacy Score Breakdown</div>
+      <div class="score-display">
+        <div class="score-number" id="scoreNumber">100</div>
+        <div style="font-size:11px; color: var(--text-muted);">out of 100</div>
+      </div>
+      <div class="deduction-list" id="deductionList"></div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Shared Data Detected</div>
+      <div id="sharedDataList"><span class="empty-state">None detected.</span></div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Trackers Detected</div>
+      <div class="chip-list" id="trackerList"><span class="empty-state">None detected.</span></div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Permissions Requested</div>
+      <div id="permissionList"><span class="empty-state">None detected.</span></div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Third-Party Hosts (XHR/Fetch)</div>
+      <div class="chip-list" id="thirdPartyList"><span class="empty-state">None detected.</span></div>
+    </div>
+
+  </div>
+
+  <script src="details.js"></script>
+</body>
+</html>

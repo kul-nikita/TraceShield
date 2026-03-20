@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>TraceShield — Generate Icons</title>
+  <style>
+    body { font-family: sans-serif; background: #0d1117; color: #e6edf3; padding: 24px; }
+    h2 { color: #58a6ff; margin-bottom: 16px; }
+    .row { display: flex; gap: 24px; align-items: flex-end; flex-wrap: wrap; margin-bottom: 24px; }
+    canvas { border: 1px solid #21262d; border-radius: 8px; }
+    button {
+      display: block; margin-top: 8px; padding: 6px 14px;
+      background: #1f3a5c; color: #58a6ff; border: 1px solid #58a6ff;
+      border-radius: 6px; cursor: pointer; font-size: 13px;
+    }
+    button:hover { background: #264d7a; }
+    p { color: #8b949e; font-size: 13px; margin-bottom: 16px; }
+  </style>
+</head>
+<body>
+  <h2>TraceShield Icon Generator</h2>
+  <p>Click each download button to save the icon. Place them in <code>TraceShield/icons/</code> with the exact filename shown.</p>
+
+  <div class="row" id="iconRow"></div>
+
+  <script>
+    const sizes = [16, 48, 128];
+
+    function drawShield(canvas, size) {
+      const ctx = canvas.getContext('2d');
+      ctx.clearRect(0, 0, size, size);
+
+      const cx = size / 2, cy = size / 2;
+      const s = size / 28; // scale factor (design was at 28px)
+
+      // Background circle
+      ctx.beginPath();
+      ctx.arc(cx, cy, size * 0.46, 0, Math.PI * 2);
+      ctx.fillStyle = '#0d1117';
+      ctx.fill();
+
+      // Shield body
+      ctx.save();
+      ctx.translate(cx - 14 * s, cy - 14 * s);
+      ctx.scale(s, s);
+
+      ctx.beginPath();
+      ctx.moveTo(14, 2);
+      ctx.lineTo(4, 6.5);
+      ctx.lineTo(4, 13);
+      ctx.bezierCurveTo(4, 18.8, 8.4, 24.3, 14, 26);
+      ctx.bezierCurveTo(19.6, 24.3, 24, 18.8, 24, 13);
+      ctx.lineTo(24, 6.5);
+      ctx.closePath();
+      ctx.fillStyle = '#1f3a5c';
+      ctx.fill();
+      ctx.strokeStyle = '#58a6ff';
+      ctx.lineWidth = 1.5;
+      ctx.lineJoin = 'round';
+      ctx.stroke();
+
+      // Check mark
+      ctx.beginPath();
+      ctx.moveTo(10, 14);
+      ctx.lineTo(13, 17);
+      ctx.lineTo(18, 11);
+      ctx.strokeStyle = '#58a6ff';
+      ctx.lineWidth = 2;
+      ctx.lineCap = 'round';
+      ctx.lineJoin = 'round';
+      ctx.stroke();
+
+      ctx.restore();
+    }
+
+    const row = document.getElementById('iconRow');
+
+    sizes.forEach(size => {
+      const wrapper = document.createElement('div');
+      const label = document.createElement('p');
+      label.textContent = `icon${size}.png`;
+      const canvas = document.createElement('canvas');
+      canvas.width = size;
+      canvas.height = size;
+      drawShield(canvas, size);
+
+      const btn = document.createElement('button');
+      btn.textContent = `⬇ Download ${size}×${size}`;
+      btn.addEventListener('click', () => {
+        const a = document.createElement('a');
+        a.download = `icon${size}.png`;
+        a.href = canvas.toDataURL('image/png');
+        a.click();
+      });
+
+      wrapper.appendChild(label);
+      wrapper.appendChild(canvas);
+      wrapper.appendChild(btn);
+      row.appendChild(wrapper);
+    });
+  </script>
+</body>
+</html>
